@@ -12,6 +12,28 @@ import InputLabel from "@mui/material/InputLabel";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Personalinfromation = () => {
+
+
+
+  const [Country, setCountry] = useState("");
+  const [States, setStates] = useState("");
+
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
   const navigate = useNavigate();
 
   const back = () => {
@@ -43,16 +65,30 @@ const Personalinfromation = () => {
     mobile_2: 0,
     address: "",
     pin_code: 0,
+    email: "",
     email_1: "",
-    email_2: "",
-    city: "",
-    state: "",
+    
+
+    Country: "",
+    States: "",
+    Division: "",
+    District: "",
+    SubDivision: "",
+    Tahsil: "",
+    Town: "",
+
+
+
+
+
+
     user_image: "",
     social_facebook: "",
     social_linkedin: "",
     user_BIO: "",
     social_twitter: "",
     social_instagram: "",
+    
   };
 
   const [values, setValues] = useState(initialValues);
@@ -84,6 +120,42 @@ const Personalinfromation = () => {
   };
 
   console.log(values);
+
+
+
+
+
+ ///////////////////////////// /////get api getmastercategories/////////////////////////////////////////////////////////////
+
+ const [category, setCategory] = useState([]);
+ useEffect(() => {
+   fetch("http://174.138.101.222:8080/get-states").then((result) => {
+     result.json().then((resp) => {
+       setCategory(resp.data);
+     });
+   });
+ }, []);
+ console.log(category);
+
+ ////////////////////////////////////////////////// /////get api getmastercategories/////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /////get api LOCATION///
 
@@ -215,18 +287,18 @@ const Personalinfromation = () => {
               <div className="formbox1">
                 <TextField
                   id="standard-basic"
-                  label="EMAIL 1 *"
-                  name="email_1"
-                  value={values.email_1}
+                  label="EMAIL *"
+                  name="email"
+                  value={values.email}
                   onChange={handleInputChange}
                   variant="standard"
                   className="personalinput"
                 />
                 <TextField
                   id="standard-basic"
-                  label="EMAIL 2 *"
-                  name="email_2"
-                  value={values.email_2}
+                  label="EMAIL 1*"
+                  name="email_1"
+                  value={values.email_1}
                   onChange={handleInputChange}
                   variant="standard"
                   className="personalinput"
@@ -272,7 +344,7 @@ const Personalinfromation = () => {
                 </button>
               </div>
               <div className="formbox1">
-                <FormControl>
+                {/* <FormControl>
                   <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
                     COUNTRIES
                   </InputLabel>
@@ -292,161 +364,160 @@ const Personalinfromation = () => {
                       </MenuItem>
                     ))}
                   </Select>
-                </FormControl>
+                </FormControl> */}
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    STATE
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.states}>
-                        {item.states}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    CITY
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.division}>
-                        {item.division}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                {/* <FormControl className="FormControl">
+          <InputLabel
+            style={{ fontFamily: "Rooboto" }}
+            id="demo-simple-select-helper-label"
+          >
+            Countries
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-label"
+            id="demo-simple-select-helper"
+            label="PLATFORM"
+            placeholder="Countries"
+            name="category"
+            style={{ fontFamily: "Rooboto" }}
+            value={values.category}
+            onChange={handleInputChange}
+          >
+            {category.map((item) => {
+              return (
+                <MenuItem value={item.country}>
+                  {item.country}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+ */}
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    DIVISION
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.district}>
-                        {item.district}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    DISTRICT
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.sub_division}>
-                        {item.sub_division}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    SUB DIVISION
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.tahsil}>
-                        {item.tahsil}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    THASIL
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.tahsil}>
-                        {item.tahsil}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+        <select
+                  onChange={handleCountryChange}
+                  value={Country}
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  label="PLATFORM"
+                  placeholder="Countries"
+                  name="Country"
+                  style={{ fontFamily: "Rooboto", height: "40px" }}
+                  // value={values.Country}
+                >
+                  <option value="">Select a Country</option>
+                  {category.map((country) => (
+                    <option key={country.alpha3Code} value={country.alpha3Code}>
+                      {country.country}
+                    </option>
+                  ))}
+                </select>
+                {/* </FormControl> */}
 
-                <FormControl>
-                  <InputLabel  style= {{fontFamily:'Rooboto'}} id="demo-simple-select-helper-label">
-                    TOWN
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="CATEGORY"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em  style= {{fontFamily:'Rooboto'}}>None</em>
-                    </MenuItem>
-                    {data?.data?.map((item) => (
-                      <MenuItem key={item._id} value={item.Town}>
-                        {item.Town}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                {/* <FormControl className="FormControl"> */}
+                <div>
+                  {Country && (
+                    <div>
+                      <label>Select State:</label>
+                      <select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        label="PLATFORM"
+                        placeholder="Countries"
+                        name="States"
+                        style={{
+                          fontFamily: "Rooboto",
+                          height: "40px",
+                          width: "100%",
+                        }}
+                        // value={values.States}
+                        value={States}
+                        onChange={(e) => setStates(e.target.value)}
+                      >
+                        <option value="">Select a State</option>
+                        {category
+                          .find((country) => country.alpha3Code === Country)
+                          .states.map((state) => (
+                            <option key={state} value={state}>
+                              {state}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+
+                {/* </FormControl> */}
+
+
+
+
+
+
+  <TextField
+                  id="standard-basic"
+                  label="Division   *"
+                  name="Division"
+                  value={values.Division}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  className="personalinput"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="District   *"
+                  name="District"
+                  value={values.District}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  className="personalinput"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Sub Division  *"
+                  name="SubDivision"
+                  value={values.SubDivision}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  className="personalinput"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Tahsil   *"
+                  name="Tahsil"
+                  value={values.Tahsil}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  className="personalinput"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Town   *"
+                  name="Town"
+                  value={values.Town}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  className="personalinput"
+                />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <button  style= {{fontFamily:'Rooboto'}} className="btn personalbtn" onClick={goToNextStep}>
                   Next

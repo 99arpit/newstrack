@@ -264,13 +264,15 @@ const Epaper = () => {
               />
             </div>
           </div>
-
-          <button  style={{fontFamily:'Rooboto'}}
+<div style={{paddingLeft:'45%'}}>
+<button  style={{fontFamily:'Rooboto'}}
             className="btn btn-primary btn-lg epaperbtn"
             onClick={() => fetchPageSize()}
           >
             Preview
           </button>
+</div>
+        
         </div>
       </div>
     </>

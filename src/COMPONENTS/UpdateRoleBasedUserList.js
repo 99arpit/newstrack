@@ -103,7 +103,7 @@ function UpdateCat() {
           </span>
           <span>Update Role Based User List</span>
         </h1>
-        <div className="personalcontainer">
+        <div>
           {/* <p className="personaltext">Category</p> */}
           <div className="formbox">
             <div className="formbox1">

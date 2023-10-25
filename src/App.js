@@ -18,9 +18,9 @@ import RoleManagement from "./COMPONENTS/Role-Management";
 import EpaperPreview from "./COMPONENTS/EpaperPreview";
 import EditDraft from "./COMPONENTS/EditDraft";
 import EditArticle from "./COMPONENTS/EditArticle";
-import  Categorys from "./COMPONENTS/Categorys";
+import Categorys from "./COMPONENTS/Categorys";
 import Tags from "./COMPONENTS/Tags";
-import  Location  from "./COMPONENTS/Location";
+import Location from "./COMPONENTS/Location";
 import RoleBasedUserList from "./COMPONENTS/RoleBasedUserList";
 import VendorRegistrationList from "./COMPONENTS/VendorRegistrationList";
 import CreateAd from "./COMPONENTS/CreateAd";
@@ -28,7 +28,7 @@ import CatList from "./COMPONENTS/CatList";
 import TagList from "./COMPONENTS/TagList";
 import TemplateSett from "./COMPONENTS/TemplateSett";
 import AddSett from "./COMPONENTS/AddSett";
-import CategorySett from "./COMPONENTS/CategorySett"
+import CategorySett from "./COMPONENTS/CategorySett";
 import UpdateCat from "./COMPONENTS/UpdateCat";
 import UpdateTagList from "./COMPONENTS/UpdateTagList";
 import UpdateVendorList from "./COMPONENTS/UpdateVendorList";
@@ -37,8 +37,10 @@ import AdvertisementList from "./COMPONENTS/AdvertisementList";
 import TemplateSelection from "./COMPONENTS/TemplateSelection";
 import EditAP from "./COMPONENTS/EditAP";
 import EditReject from "./COMPONENTS/EditReject";
-import Role from "./COMPONENTS/Role";
-
+import RoleList from "./COMPONENTS/RoleList";
+import LocationList from "./COMPONENTS/LocationList";
+import UpdateLocation from "./COMPONENTS/UpdateLocation";
+import UpdateAddList from "./COMPONENTS/UpdateAddList";
 
 const App = () => {
   return (
@@ -54,7 +56,7 @@ const App = () => {
         <Route path="/EditDraft" element={<EditDraft />} />
         <Route path="/EditAP" element={<EditAP />} />
         <Route path="/EditReject" element={<EditReject />} />
-        <Route path="/allRole" element={<Role/>} />
+        <Route path="/allRole" element={<RoleList />} />
 
         <Route path="/editArticle" element={<EditArticle />} />
         <Route path="/updateCat" element={<UpdateCat />} />
@@ -62,18 +64,29 @@ const App = () => {
         <Route path="/categorys" element={<Categorys />} />
         <Route path="/tags" element={<Tags />} />
         <Route path="/location" element={<Location />} />
-        <Route path="/vendorregistrationlist" element={<VendorRegistrationList />} />
+        <Route
+          path="/vendorregistrationlist"
+          element={<VendorRegistrationList />}
+        />
         <Route path="/rolebaseduserlist" element={<RoleBasedUserList />} />
         <Route path="/categorylist" element={<CatList />} />
         <Route path="/taglist" element={<TagList />} />
+        <Route path="/locationlist" element={<LocationList />} />
         <Route path="/updatetaglist" element={<UpdateTagList />} />
         <Route path="/updatevendorlist" element={<UpdateVendorList />} />
-        <Route path="/updaterolebaseduserlist" element={<UpdateRoleBasedUserList />} />
+        <Route
+          path="/updaterolebaseduserlist"
+          element={<UpdateRoleBasedUserList />}
+        />
+        <Route path="/updatelocation" element={<UpdateLocation />} />
+        <Route path="/updateaddlist" element={<UpdateAddList />} />
+
         <Route path="/advertisementlist" element={<AdvertisementList />} />
         <Route path="/Template" element={<Template />} />
         <Route path="/Template2" element={<Template2 />} />
         <Route path="/Template3" element={<Template3 />} />
         <Route path="/RoleManagement" element={<RoleManagement />} />
+
         <Route path="/EpaperPreview" element={<EpaperPreview />} />
         <Route path="/create-ad" element={<CreateAd />} />
         <Route path="/templatesett" element={<TemplateSett />} />
@@ -95,7 +108,6 @@ const App = () => {
           element={<NewsAgencyAddnewsarticle />}
         />
       </Routes>
-
     </BrowserRouter>
   );
 };

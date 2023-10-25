@@ -583,6 +583,14 @@ const Navbar = () => {
                       Advertisement List
                     </p>
                   </Link>
+                  <Link to="/locationlist">
+                    <p
+                      style={{ fontFamily: "Roboto" }}
+                      className="dropdown-item"
+                    >
+                      Location List
+                    </p>
+                  </Link>
                 </div>
               </div>
             </span>

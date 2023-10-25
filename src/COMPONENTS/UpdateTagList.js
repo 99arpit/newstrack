@@ -180,7 +180,7 @@ function UpdateCat() {
           </span>
           <span>Update Category</span>
         </h1>
-        <div className="personalcontainer">
+        <div>
           <div className="formbox">
             <div className="formbox1">
               <TextField

@@ -30,6 +30,7 @@ const Vendorinfromation = () => {
   const initialValues = {
     publisher_name: "",
     type_of_Entity: "",
+    templates:"",
     password: "",
     owner_key: "",
     publisher_BIO: "",
@@ -222,6 +223,47 @@ const Vendorinfromation = () => {
                     Propitorship
                   </MenuItem>
                 </TextField>
+
+                <TextField
+                  select
+                  label="Templates"
+                  name="templates"
+                  variant="standard"
+                  value={values.templates}
+                  onChange={handleInputChange}
+                >
+                  <MenuItem
+                    style={{ fontFamily: "Rooboto" }}
+                    value={"indivisual"}
+                  >
+                    1
+                  </MenuItem>
+                  <MenuItem style={{ fontFamily: "Rooboto" }} value={"trust"}>
+                    2
+                  </MenuItem>
+                  <MenuItem style={{ fontFamily: "Rooboto" }} value={"company"}>
+                    {" "}
+                    3
+                  </MenuItem>
+                  <MenuItem
+                    style={{ fontFamily: "Rooboto" }}
+                    value={"partnership"}
+                  >
+                    {" "}
+                    4
+                  </MenuItem>
+                  <MenuItem
+                    style={{ fontFamily: "Rooboto" }}
+                    value={"propitorship"}
+                  >
+                    {" "}
+                    5
+                  </MenuItem>
+                </TextField>
+
+
+
+
 
                 <TextField
                   id="standard-basic"

@@ -140,3 +140,33 @@
 //   -webkit-box-orient: vertical;
 //   width: 100%;
 // }
+
+
+/* Add this CSS to your News-Approval.scss file */
+
+/* Style for previous and next buttons */
+.pagination button {
+  padding: 8px 30px;
+  margin: 0 4px;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the active page button */
+.pagination button.active {
+  background-color: #0056b3;
+}
+
+/* Disable style for previous and next buttons */
+.pagination button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

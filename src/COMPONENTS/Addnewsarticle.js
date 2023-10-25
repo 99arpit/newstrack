@@ -36,6 +36,7 @@ const Addnewsarticle = () => {
     image: "",
     url: "",
     tags: "",
+    manual_tag:"",
     news_priority: "",
     news_sections: "newsSection",
     change_byline: false,
@@ -383,24 +384,15 @@ const Addnewsarticle = () => {
 
 
 
-        <FormControl className="FormControl">
-          <InputLabel id="demo-simple-select-helper-label">
-            Tags/Keywords
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper"
-            name="tags"
-            label="Tags/Keywords"
-            onChange={handleInputChange}
-          >
-            {tags.map((item) => (
-              <MenuItem key={item._id} value={item.tag_name}>
-                {item.tag_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <TextField
+          id="outlined-basic"
+          label="Menaul Tag"
+          className="FormControl"
+          variant="outlined"
+          name="manual_tag"
+          value={values.manual_tag}
+          onChange={handleInputChange}
+        />
 
 
 

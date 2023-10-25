@@ -12,24 +12,30 @@ function UpdateCat() {
   console.log(location.state);
   const [values, setValues] = useState(location.state);
 
-  const [publisher_name, setpublisher_name] = useState("");
-  const [email, setemail] = useState("");
-  const [tech_name, settech_name] = useState("");
-  const [finance_name, setfinance_name] = useState("");
-  const [regd_address, setregd_address] = useState("");
-  const [comm_address, setcomm_address] = useState("");
-  const [domain_name, setdomain_name] = useState("");
-  const [site_display_contact, setsite_display_contact] = useState("");
+  const [Country, setCountry] = useState("");
+  const [District, setDistrict] = useState("");
+  const [Division, setDivision] = useState("");
+  const [English, setEnglish] = useState("");
+  const [Hindi, setHindi] = useState("");
+  const [States, setStates] = useState("");
+  const [SubDivision, setSubDivision] = useState("");
+  const [Tahsil, setTahsil] = useState("");
+
+  const [Town, setTown] = useState("");
+  const [URL, setURL] = useState("");
 
   const getvalue = () => {
-    setpublisher_name(values.publisher_name);
-    setemail(values.email);
-    settech_name(values.tech_name);
-    setfinance_name(values.finance_name);
-    setregd_address(values.regd_address);
-    setcomm_address(values.comm_address);
-    setdomain_name(values.domain_name);
-    setsite_display_contact(values.site_display_contact);
+    setCountry(values.Country);
+    setDistrict(values.District);
+    setDivision(values.Division);
+    setEnglish(values.English);
+    setHindi(values.Hindi);
+    setStates(values.States);
+    setSubDivision(values.SubDivision);
+    setTahsil(values.Tahsil);
+
+    setTown(values.Town);
+    setURL(values.URL);
   };
   useEffect(() => {
     getvalue();
@@ -37,18 +43,22 @@ function UpdateCat() {
 
   const handleSubmit = async () => {
     let item = {
-      publisher_name,
-      email,
-      tech_name,
-      finance_name,
-      regd_address,
-      comm_address,
-      domain_name,
-      site_display_contact,
+      Country,
+      District,
+      Division,
+      English,
+      Hindi,
+      States,
+      SubDivision,
+      Tahsil,
+      Town,
+      URL,
     };
     console.log("handleSubmit clicked", item);
     const apiEndpoint =
-      "http://174.138.101.222:8080/" + values._id + "/update_publication";
+      // http://174.138.101.222:8080/652a493a96bb75015cd5aa78/updateLocations
+
+      "http://174.138.101.222:8080/" + values._id + "/updateLocations";
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -62,7 +72,7 @@ function UpdateCat() {
         if (response.status === 200) {
           return response.json().then((data) => {
             alert("Update");
-            navigate("/vendorregistrationlist");
+            navigate("/updatelocation");
           });
         } else if (response.status === 400) {
           return response.json().then((data) => {
@@ -74,26 +84,28 @@ function UpdateCat() {
         console.error(error);
       });
   };
+
   const [style, setStyle] = useState("main-menu");
 
   const changeStyle = () => {
     setStyle((prev) => {
-      if (prev === 'main-menu') {
-        setStyle('main-menu-1')
-      } else setStyle('main-menu')
+      if (prev === "main-menu") {
+        setStyle("main-menu-1");
+      } else setStyle("main-menu");
     });
   };
+
   return (
     <>
       <nav className={style}>
-          <Navbar />
-        </nav>
+        <Navbar />
+      </nav>
       <div className="parentContainer">
         <h1>
           <span className="pointer" onClick={() => navigate(-1)}>
             <HiOutlineArrowSmallLeft />
           </span>
-          <span>Update Vendor Registration List</span>
+          <span>Update Location</span>
         </h1>
         <div>
           {/* <p className="personaltext">Category</p> */}
@@ -101,80 +113,94 @@ function UpdateCat() {
             <div className="formbox1">
               <TextField
                 id="standard-basic"
-                label="Publisher Name *"
-                name="publisher_name"
+                label="Country *"
+                name="Country"
                 variant="standard"
                 className="personalinput"
-                value={publisher_name}
-                onChange={(e) => setpublisher_name(e.target.value)}
+                value={Country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+              <TextField
+                id="standard-basic"
+                label="District *"
+                name="District"
+                variant="standard"
+                className="personalinput"
+                value={District}
+                onChange={(e) => setDistrict(e.target.value)}
+              />
+              <TextField
+                id="standard-basic"
+                label="Division *"
+                name="Division"
+                variant="standard"
+                className="personalinput"
+                value={Division}
+                onChange={(e) => setDivision(e.target.value)}
+              />
+              <TextField
+                id="standard-basic"
+                label="English *"
+                name="English"
+                variant="standard"
+                className="personalinput"
+                value={English}
+                onChange={(e) => setEnglish(e.target.value)}
               />
 
               <TextField
                 id="standard-basic"
-                label="Email ID *"
-                name="email"
+                label="Hindi *"
+                name="Hindi"
                 variant="standard"
                 className="personalinput"
-                value={email}
-                onChange={(e) => setemail(e.target.value)}
+                value={Hindi}
+                onChange={(e) => setHindi(e.target.value)}
               />
               <TextField
                 id="standard-basic"
-                label="Tech Person Contact Name *"
-                name="tech_name"
+                label="States *"
+                name="States"
                 variant="standard"
                 className="personalinput"
-                value={tech_name}
-                onChange={(e) => settech_name(e.target.value)}
-              />
-
-              <TextField
-                id="standard-basic"
-                label="Finance Contact Name *"
-                name="finance_name"
-                variant="standard"
-                className="personalinput"
-                value={finance_name}
-                onChange={(e) => setfinance_name(e.target.value)}
-              />
-
-              <TextField
-                id="standard-basic"
-                label="Registered Address *"
-                name="regd_address"
-                variant="standard"
-                className="personalinput"
-                value={regd_address}
-                onChange={(e) => regd_address(e.target.value)}
-              />
-
-              <TextField
-                id="standard-basic"
-                label="Communication Address *"
-                name="comm_address"
-                variant="standard"
-                className="personalinput"
-                value={comm_address}
-                onChange={(e) => setcomm_address(e.target.value)}
+                value={States}
+                onChange={(e) => setStates(e.target.value)}
               />
               <TextField
                 id="standard-basic"
-                label="Domain Name *"
-                name="domain_name"
+                label="SubDivision *"
+                name="SubDivision"
                 variant="standard"
                 className="personalinput"
-                value={domain_name}
-                onChange={(e) => setdomain_name(e.target.value)}
+                value={SubDivision}
+                onChange={(e) => setSubDivision(e.target.value)}
               />
-
               <TextField
                 id="standard-basic"
-                label="Site Display Contact *"
-                name="site_display_contact"
+                label="Tahsil  *"
+                name="Tahsil"
                 variant="standard"
                 className="personalinput"
-                value={site_display_contact}
-                onChange={(e) => setsite_display_contact(e.target.value)}
+                value={Tahsil}
+                onChange={(e) => setTahsil(e.target.value)}
+              />
+              <TextField
+                id="standard-basic"
+                label="Town *"
+                name="Town"
+                variant="standard"
+                className="personalinput"
+                value={Town}
+                onChange={(e) => setTown(e.target.value)}
+              />
+              <TextField
+                id="standard-basic"
+                label="URL *"
+                name="URL"
+                variant="standard"
+                className="personalinput"
+                value={Town}
+                onChange={(e) => setURL(e.target.value)}
               />
 
               <button className=" btn  personalbtn" onClick={handleSubmit}>

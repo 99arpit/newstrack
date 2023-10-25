@@ -195,7 +195,7 @@ const NewsApproval = () => {
   ///////////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    getDrafts();  
+    getDrafts();
     getData();
     getApprovedNews();
     getRejectedNews();
@@ -233,42 +233,53 @@ const NewsApproval = () => {
 
   const [style, setStyle] = useState("main-menu");
 
-const changeStyle = () => {
-  setStyle((prev) => {
-    if (prev === 'main-menu') {
-      setStyle('main-menu-1')
-    } else setStyle('main-menu')
-  });
-};
-
+  const changeStyle = () => {
+    setStyle((prev) => {
+      if (prev === "main-menu") {
+        setStyle("main-menu-1");
+      } else setStyle("main-menu");
+    });
+  };
 
   return (
     <>
       <nav className={style}>
-          <Navbar />
-        </nav>
-      <div className="parentContainer">     
+        <Navbar />
+      </nav>
+      <div className="parentContainer">
         <h1>
           <span>
             <HiOutlineArrowSmallLeft onClick={back} className="pointer" />
           </span>
-          <span style={{fontFamily:'Rooboto'}}>News Approval</span>
+          <span style={{ fontFamily: "Rooboto" }}>News Approval</span>
         </h1>
         <ButtonGroup className="me-2 groupOfButtons" aria-label="First group">
           {" "}
-          <Button style={{fontFamily:'Rooboto'}} onClick={() => setTable("Drafts")}>
+          <Button
+            style={{ fontFamily: "Rooboto" }}
+            onClick={() => setTable("Drafts")}
+          >
             Draft <div>{drafts?.length}</div>
           </Button>{" "}
-          <Button  style={{fontFamily:'Rooboto'}} onClick={() => setTable("Pending Approval")}>
+          <Button
+            style={{ fontFamily: "Rooboto" }}
+            onClick={() => setTable("Pending Approval")}
+          >
             Pending Approval <div>{data?.data.data.length}</div>
           </Button>{" "}
-          <Button  style={{fontFamily:'Rooboto'}} onClick={() => setTable("Approved")}>
+          <Button
+            style={{ fontFamily: "Rooboto" }}
+            onClick={() => setTable("Approved")}
+          >
             Approved / Published <div>{approvedNews?.length}</div>
           </Button>
           {/* <Button  style={{fontFamily:'Rooboto'}}>
             Needs Review <div>0</div>
           </Button>{" "} */}
-          <Button  style={{fontFamily:'Rooboto'}} onClick={() => setTable("Rejected")}>
+          <Button
+            style={{ fontFamily: "Rooboto" }}
+            onClick={() => setTable("Rejected")}
+          >
             Rejected <div>{rejectedNews?.length}</div>
           </Button>{" "}
           {/* <Button>
@@ -280,45 +291,44 @@ const changeStyle = () => {
         </ButtonGroup>
 
         {table === "Drafts" && (
-          <table style={{zIndex:'0'}}>
+          <table style={{ zIndex: "0" }}>
             <thead>
               <tr>
-                <th  style={{fontFamily:'Rooboto'}}>S.No.</th>
-                <th  style={{fontFamily:'Rooboto'}}>Title</th>
-                <th  style={{fontFamily:'Rooboto'}}>Category</th>
-                <th  style={{fontFamily:'Rooboto'}}>Created Time</th>
-                <th  style={{fontFamily:'Rooboto'}}>Last Update</th>
-                <th  style={{fontFamily:'Rooboto'}}>Author Name</th>
-                <th style={{fontFamily:'Rooboto'}} >News Agency</th>
-                <th style={{fontFamily:'Rooboto'}}>Operation</th>
+                <th style={{ fontFamily: "Rooboto" }}>S.No.</th>
+                <th style={{ fontFamily: "Rooboto" }}>Title</th>
+                <th style={{ fontFamily: "Rooboto" }}>Category</th>
+                <th style={{ fontFamily: "Rooboto" }}>Created Time</th>
+                <th style={{ fontFamily: "Rooboto" }}>Last Update</th>
+                <th style={{ fontFamily: "Rooboto" }}>Author Name</th>
+                <th style={{ fontFamily: "Rooboto" }}>News Agency</th>
+                <th style={{ fontFamily: "Rooboto" }}>Operation</th>
               </tr>
             </thead>
 
-            {drafts?.slice().reverse().map((item, index) => {
-              return (
-                <tbody key={item?._id}>
-                  <tr
-                    onClick={() => navigate("/viewNews", { state: { item } })}
-                    className="pointer "
-                  >
-                    <td style={{fontFamily:'Rooboto'}}>{index + 1}</td>
+            {drafts
+              ?.slice()
+              .reverse()
+              .map((item, index) => {
+                return (
+                  <tbody key={item?._id}>
+                    <tr
+                      onClick={() => navigate("/viewNews", { state: { item } })}
+                      className="pointer "
+                    >
+                      <td style={{ fontFamily: "Rooboto" }}>{index + 1}</td>
 
-
-
-
-
-
-                    {/* <td style={{fontFamily:'Rooboto'}} dangerouslySetInnerHTML={{ __html: item.title }}></td> */}
-                    {/* <td style={{fontFamily:'Rooboto'}}  > */}
-                    {
-                      item.title === '**' || item.title === '##' ?(
+                      {/* <td style={{fontFamily:'Rooboto'}} dangerouslySetInnerHTML={{ __html: item.title }}></td> */}
+                      {/* <td style={{fontFamily:'Rooboto'}}  > */}
+                      {item.title === "**" || item.title === "##" ? (
                         <span>11</span>
-                      ) :(
-                        <td style={{fontFamily:'Rooboto'}} dangerouslySetInnerHTML={{ __html: item.title }}></td>
-                      )
-                    }
+                      ) : (
+                        <td
+                          style={{ fontFamily: "Rooboto" }}
+                          dangerouslySetInnerHTML={{ __html: item.title }}
+                        ></td>
+                      )}
 
-                    {/* {
+                      {/* {
               if (item.title == '*' || item.title== '#'){
                   return (
                       <span>11</span>
@@ -328,285 +338,332 @@ const changeStyle = () => {
                 dangerouslySetInnerHTML={{ __html: item.title }};
               }
                     } */}
-               
-               {/* </td> */}
-                    
-                    
-                    <td style={{fontFamily:'Rooboto'}}>{item.category}</td>
-                    <td style={{fontFamily:'Rooboto'}}>
-                      <p style={{fontFamily:'Rooboto'}}>{item.createdAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.createdAt.slice(11, 16))}</p>
-                    </td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.updatedAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.updatedAt.slice(11, 16))}</p>
-                    </td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.author_name}</td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.username}</td>
 
-                    <td style={{fontFamily:'Rooboto'}}>
-                      {delArray.includes(item._id) ? (
-                        <form
-                          onClick={(e) => e.stopPropagation()}
-                          onSubmit={(e) => e.preventDefault()}
-                        >
-                          <textarea
-                            placeholder="Rejection remarks"
-                            onChange={(e) => setRemark(e.target.value)}
-                          />
-                          <button style={{fontFamily:'Rooboto'}}
-                            type="submit"
-                            onClick={(event) => {
-                              console.log(item._id, remark);
-                              handleReject(event, item._id, remark);
-                            }}
+                      {/* </td> */}
+
+                      <td style={{ fontFamily: "Rooboto" }}>{item.category}</td>
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.createdAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.createdAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.updatedAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.updatedAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {item.author_name}
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.username}</td>
+
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {delArray.includes(item._id) ? (
+                          <form
+                            onClick={(e) => e.stopPropagation()}
+                            onSubmit={(e) => e.preventDefault()}
                           >
-                            Reject
-                          </button>
-                        </form>
-                      ) : (
-                        <div>
-                          <span
-                            className="pointer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate("/editDraft", { state: item });
-                            }}
-                          >
-                            <FaEdit />
-                          </span>
-                          <span
-                            className="pointer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setDelArray([...delArray, item._id]);
-                              console.log("Delete Clicked", delArray);
-                            }}
-                          >
-                            <AiTwotoneDelete className="delete" />
-                          </span>
-                          <span className="pointer" title="View News">
-                            <FiEye />
-                          </span>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+                            <textarea
+                              placeholder="Rejection remarks"
+                              onChange={(e) => setRemark(e.target.value)}
+                            />
+                            <button
+                              style={{ fontFamily: "Rooboto" }}
+                              type="submit"
+                              onClick={(event) => {
+                                console.log(item._id, remark);
+                                handleReject(event, item._id, remark);
+                              }}
+                            >
+                              Reject
+                            </button>
+                          </form>
+                        ) : (
+                          <div>
+                            <span
+                              className="pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate("/editDraft", { state: item });
+                              }}
+                            >
+                              <FaEdit />
+                            </span>
+                            <span
+                              className="pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setDelArray([...delArray, item._id]);
+                                console.log("Delete Clicked", delArray);
+                              }}
+                            >
+                              <AiTwotoneDelete className="delete" />
+                            </span>
+                            <span className="pointer" title="View News">
+                              <FiEye />
+                            </span>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
 
             <tfoot></tfoot>
           </table>
         )}
 
         {table === "Pending Approval" && (
-          <table style={{zIndex:'0'}} >
+          <table style={{ zIndex: "0" }}>
             <thead>
               <tr>
-                <th style={{fontFamily:'Rooboto'}}>S.No.</th>
-                <th style={{fontFamily:'Rooboto'}}>Title</th>
-                <th style={{fontFamily:'Rooboto'}}>Category</th>
-                <th style={{fontFamily:'Rooboto'}}>Created Time</th>
-                <th style={{fontFamily:'Rooboto'}}>Last Update</th>
-                <th style={{fontFamily:'Rooboto'}}>Author Name</th>
-                <th style={{fontFamily:'Rooboto'}}>News Agency</th>
-                <th style={{fontFamily:'Rooboto'}}>Schedule</th>
-                <th style={{fontFamily:'Rooboto'}}>Operation</th>
+                <th style={{ fontFamily: "Rooboto" }}>S.No.</th>
+                <th style={{ fontFamily: "Rooboto" }}>Title</th>
+                <th style={{ fontFamily: "Rooboto" }}>Category</th>
+                <th style={{ fontFamily: "Rooboto" }}>Created Time</th>
+                <th style={{ fontFamily: "Rooboto" }}>Last Update</th>
+                <th style={{ fontFamily: "Rooboto" }}>Author Name</th>
+                <th style={{ fontFamily: "Rooboto" }}>News Agency</th>
+                <th style={{ fontFamily: "Rooboto" }}>Schedule</th>
+                <th style={{ fontFamily: "Rooboto" }}>Operation</th>
               </tr>
             </thead>
 
-            {data?.data?.data?.slice().reverse().map((item, index) => {
-              return (
-                <tbody key={item?._id}>
-                  <tr
-                    onClick={() => navigate("/viewNews", { state: { item } })}
-                    className="pointer "
-                  >
-                    <td style={{fontFamily:'Rooboto'}}>{index + 1}</td>
-                    <td  style={{fontFamily:'Rooboto'}}dangerouslySetInnerHTML={{ __html: item.title }}></td>
-                    {/* <td >{item.title}</td> */}
+            {data?.data?.data
+              ?.slice()
+              .reverse()
+              .map((item, index) => {
+                return (
+                  <tbody key={item?._id}>
+                    <tr
+                      onClick={() => navigate("/viewNews", { state: { item } })}
+                      className="pointer "
+                    >
+                      <td style={{ fontFamily: "Rooboto" }}>{index + 1}</td>
+                      <td
+                        style={{ fontFamily: "Rooboto" }}
+                        dangerouslySetInnerHTML={{ __html: item.title }}
+                      ></td>
+                      {/* <td >{item.title}</td> */}
 
-                    <td style={{fontFamily:'Rooboto'}}> {item.category}</td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.createdAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.createdAt.slice(11, 16))}</p>
-                    </td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.updatedAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.updatedAt.slice(11, 16))}</p>
-                    </td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.author_name}</td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.username}</td>
-                    <td style={{fontFamily:'Rooboto'}}>
-                      {later.includes(item._id) ? (
-                        <form>
-                          <input
-                            type="datetime-local"
-                            onClick={(e) => e.stopPropagation()}
-                            onChange={(e) => {
-                              setSchedule_date(
-                                `${e.target.valueAsDate?.getUTCFullYear()}-${zeroAppend(
-                                  e.target.valueAsDate?.getUTCMonth() + 1
-                                )}-${zeroAppend(
-                                  e.target.valueAsDate?.getUTCDate()
-                                )}`
-                              );
-                              setSchedule_time(
-                                `${zeroAppend(
-                                  e.target.valueAsDate?.getUTCHours()
-                                )}:${zeroAppend(
-                                  e.target.valueAsDate?.getUTCMinutes()
-                                )}`
-                              );
-                            }}
-                          />
-                        </form>
-                      ) : (
-                        <select
-                          name="schedule"
-                          id="schedule"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <option onClick={(e) => e.stopPropagation()}></option>
-                          <option
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSchedule_date(
-                                `${new Date().getUTCFullYear()}-${
-                                  new Date().getUTCMonth() + 1
-                                }-${new Date().getUTCDate()}`
-                              );
-                              setSchedule_time(
-                                utcToGmt(
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {" "}
+                        {item.category}
+                      </td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.createdAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.createdAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.updatedAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.updatedAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {item.author_name}
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.username}</td>
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {later.includes(item._id) ? (
+                          <form>
+                            <input
+                              type="datetime-local"
+                              onClick={(e) => e.stopPropagation()}
+                              onChange={(e) => {
+                                setSchedule_date(
+                                  `${e.target.valueAsDate?.getUTCFullYear()}-${zeroAppend(
+                                    e.target.valueAsDate?.getUTCMonth() + 1
+                                  )}-${zeroAppend(
+                                    e.target.valueAsDate?.getUTCDate()
+                                  )}`
+                                );
+                                setSchedule_time(
                                   `${zeroAppend(
-                                    new Date().getUTCHours()
-                                  )}:${zeroAppend(new Date().getUTCMinutes())}`
-                                )
-                              );
-                            }}
+                                    e.target.valueAsDate?.getUTCHours()
+                                  )}:${zeroAppend(
+                                    e.target.valueAsDate?.getUTCMinutes()
+                                  )}`
+                                );
+                              }}
+                            />
+                          </form>
+                        ) : (
+                          <select
+                            name="schedule"
+                            id="schedule"
+                            onClick={(e) => e.stopPropagation()}
                           >
-                            Now
-                          </option>
-                          <option
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setLater([...later, item._id]);
-                            }}
-                          >
-                            Later
-                          </option>
-                        </select>
-                      )}
-                    </td>
+                            <option
+                              onClick={(e) => e.stopPropagation()}
+                            ></option>
+                            <option
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSchedule_date(
+                                  `${new Date().getUTCFullYear()}-${
+                                    new Date().getUTCMonth() + 1
+                                  }-${new Date().getUTCDate()}`
+                                );
+                                setSchedule_time(
+                                  utcToGmt(
+                                    `${zeroAppend(
+                                      new Date().getUTCHours()
+                                    )}:${zeroAppend(
+                                      new Date().getUTCMinutes()
+                                    )}`
+                                  )
+                                );
+                              }}
+                            >
+                              Now
+                            </option>
+                            <option
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setLater([...later, item._id]);
+                              }}
+                            >
+                              Later
+                            </option>
+                          </select>
+                        )}
+                      </td>
 
-                    <td style={{fontFamily:'Rooboto'}}>
-                      {delArray.includes(item._id) ? (
-                        <form
-                          onClick={(e) => e.stopPropagation()}
-                          onSubmit={(e) => e.preventDefault()}
-                        >
-                          <textarea
-                            placeholder="Rejection remarks"
-                            onChange={(e) => setRemark(e.target.value)}
-                          />
-                          <button
-                            type="submit"
-                            onClick={(event) =>
-                              handleReject(event, item._id, remark)
-                            }
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {delArray.includes(item._id) ? (
+                          <form
+                            onClick={(e) => e.stopPropagation()}
+                            onSubmit={(e) => e.preventDefault()}
                           >
-                            Reject
-                          </button>
-                        </form>
-                      ) : (
-                        <div>
-                          <span
-                            className="pointer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate("/editArticle", { state: item });
-                            }}
-                          >
-                            <FaEdit />
-                          </span>
-                          <span
-                            className="pointer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setDelArray([...delArray, item._id]);
-                              console.log("Delete Clicked", delArray);
-                            }}
-                          >
-                            <AiTwotoneDelete className="delete" />
-                          </span>
-                          <span
-                            className="pointer"
-                            onClick={(event) =>
-                              handleApprove(
-                                event,
-                                item._id,
-                                schedule_date,
-                                schedule_time
-                              )
-                            }
-                          >
-                            <TiTick />
-                          </span>
-                          <span className="pointer" title="View News">
-                            <FiEye />
-                          </span>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+                            <textarea
+                              placeholder="Rejection remarks"
+                              onChange={(e) => setRemark(e.target.value)}
+                            />
+                            <button
+                              type="submit"
+                              onClick={(event) =>
+                                handleReject(event, item._id, remark)
+                              }
+                            >
+                              Reject
+                            </button>
+                          </form>
+                        ) : (
+                          <div>
+                            <span
+                              className="pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate("/editArticle", { state: item });
+                              }}
+                            >
+                              <FaEdit />
+                            </span>
+                            <span
+                              className="pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setDelArray([...delArray, item._id]);
+                                console.log("Delete Clicked", delArray);
+                              }}
+                            >
+                              <AiTwotoneDelete className="delete" />
+                            </span>
+                            <span
+                              className="pointer"
+                              onClick={(event) =>
+                                handleApprove(
+                                  event,
+                                  item._id,
+                                  schedule_date,
+                                  schedule_time
+                                )
+                              }
+                            >
+                              <TiTick />
+                            </span>
+                            <span className="pointer" title="View News">
+                              <FiEye />
+                            </span>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
 
             <tfoot></tfoot>
           </table>
         )}
         {table === "Approved" && (
-          <table style={{zIndex:'0'}}>
+          <table style={{ zIndex: "0" }}>
             <thead>
               <tr>
-                <th style={{fontFamily:'Rooboto'}}>S.No.</th>
-                <th style={{fontFamily:'Rooboto'}}>Title</th>
-                <th style={{fontFamily:'Rooboto'}}>Category</th>
-                <th style={{fontFamily:'Rooboto'}}>Approval Time</th>
-                <th style={{fontFamily:'Rooboto'}}>Publishing Time</th>
-                <th style={{fontFamily:'Rooboto'}}>Author Name</th>
-                <th style={{fontFamily:'Rooboto'}}>Approved By</th>
-                <th style={{fontFamily:'Rooboto'}}>News Agency</th>
+                <th style={{ fontFamily: "Rooboto" }}>S.No.</th>
+                <th style={{ fontFamily: "Rooboto" }}>Title</th>
+                <th style={{ fontFamily: "Rooboto" }}>Category</th>
+                <th style={{ fontFamily: "Rooboto" }}>Approval Time</th>
+                <th style={{ fontFamily: "Rooboto" }}>Publishing Time</th>
+                <th style={{ fontFamily: "Rooboto" }}>Author Name</th>
+                <th style={{ fontFamily: "Rooboto" }}>Approved By</th>
+                <th style={{ fontFamily: "Rooboto" }}>News Agency</th>
 
-                <th style={{fontFamily:'Rooboto'}}>Operation</th>
+                <th style={{ fontFamily: "Rooboto" }}>Operation</th>
               </tr>
             </thead>
 
-            {approvedNews?.slice().reverse().map((item, index) => {
-              return (
-                <tbody key={item?._id}>
-                  <tr>
-                    <td style={{fontFamily:'Rooboto'}}>{index + 1}</td>
-                    <td style={{fontFamily:'Rooboto'}}
-                      className="pointer"
-                      dangerouslySetInnerHTML={{ __html: item.title }}
-                    ></td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.category}</td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.updatedAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.updatedAt.slice(11, 16))}</p>
-                    </td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.schedule_date}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{item.schedule_time}</p>
-                    </td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.author_name}</td>
-                    <td style={{fontFamily:'Rooboto'}}>Approved By</td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.username}</td>
+            {approvedNews
+              ?.slice()
+              .reverse()
+              .map((item, index) => {
+                return (
+                  <tbody key={item?._id}>
+                    <tr>
+                      <td style={{ fontFamily: "Rooboto" }}>{index + 1}</td>
+                      <td
+                        style={{ fontFamily: "Rooboto" }}
+                        className="pointer"
+                        dangerouslySetInnerHTML={{ __html: item.title }}
+                      ></td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.category}</td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.updatedAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.updatedAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.schedule_date}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.schedule_time}
+                        </p>
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {item.author_name}
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>Approved By</td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.username}</td>
 
-                    {/* <td style={{fontFamily:'Rooboto'}}>
+                      {/* <td style={{fontFamily:'Rooboto'}}>
                     <span
                             className="pointer"
                             onClick={(e) => {
@@ -633,131 +690,148 @@ const changeStyle = () => {
                       </span>
                     </td> */}
 
-                    <td style={{fontFamily:'Rooboto'}}>
-                      {delArray.includes(item._id) ? (
-                        <form
-                          onClick={(e) => e.stopPropagation()}
-                          onSubmit={(e) => e.preventDefault()}
-                        >
-                          <textarea
-                            placeholder="Rejection remarks"
-                            onChange={(e) => setRemark(e.target.value)}
-                          />
-                          <button style={{fontFamily:'Rooboto'}}
-                            type="submit"
-                            onClick={(event) => {
-                              console.log(item._id, remark);
-                              handleReject(event, item._id, remark);
-                            }}
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {delArray.includes(item._id) ? (
+                          <form
+                            onClick={(e) => e.stopPropagation()}
+                            onSubmit={(e) => e.preventDefault()}
                           >
-                            Reject
-                          </button>
-                        </form>
-                      ) : (
-                        <div>
-                        <span
-                            className="pointer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate("/EditAP", { state: item });
-                            }}
-                          >
-                            <FaEdit />
-                          </span>
-                          <span
-                            className="pointer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setDelArray([...delArray, item._id]);
-                              console.log("Delete Clicked", delArray);
-                            }}
-                          >
-                            <AiTwotoneDelete className="delete" />
-                          </span>
-                          <span
-                        onClick={() => navigate("/viewNews", { state: { item } })}
-                        className="pointer"
-                        title="View News"
-                        // onClick={() => handleApprove(item.userId, item._id)}
-                      >
-                        <FiEye />
-                      </span>
-                        </div>
-                      )}
-                    </td>
-
-                   
-
-
-
-
-                  </tr>
-                </tbody>
-              );
-            })}
+                            <textarea
+                              placeholder="Rejection remarks"
+                              onChange={(e) => setRemark(e.target.value)}
+                            />
+                            <button
+                              style={{ fontFamily: "Rooboto" }}
+                              type="submit"
+                              onClick={(event) => {
+                                console.log(item._id, remark);
+                                handleReject(event, item._id, remark);
+                              }}
+                            >
+                              Reject
+                            </button>
+                          </form>
+                        ) : (
+                          <div>
+                            <span
+                              className="pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate("/EditAP", { state: item });
+                              }}
+                            >
+                              <FaEdit />
+                            </span>
+                            <span
+                              className="pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setDelArray([...delArray, item._id]);
+                                console.log("Delete Clicked", delArray);
+                              }}
+                            >
+                              <AiTwotoneDelete className="delete" />
+                            </span>
+                            <span
+                              onClick={() =>
+                                navigate("/viewNews", { state: { item } })
+                              }
+                              className="pointer"
+                              title="View News"
+                              // onClick={() => handleApprove(item.userId, item._id)}
+                            >
+                              <FiEye />
+                            </span>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
 
             <tfoot></tfoot>
           </table>
         )}
         {table === "Rejected" && (
-          <table style={{zIndex:'0'}}>
+          <table style={{ zIndex: "0" }}>
             <thead>
               <tr>
-                <th style={{fontFamily:'Rooboto'}}>S.No.</th>
-                <th style={{fontFamily:'Rooboto'}}>Title</th>
-                <th style={{fontFamily:'Rooboto'}}>Category</th>
-                <th style={{fontFamily:'Rooboto'}}>Creation Time</th>
-                <th style={{fontFamily:'Rooboto'}}>Rejection Time</th>
-                <th style={{fontFamily:'Rooboto'}}>Author Name</th>
-                <th style={{fontFamily:'Rooboto'}}>Rejected By</th>
-                <th style={{fontFamily:'Rooboto'}}>Rejection Remarks</th>
-                <th style={{fontFamily:'Rooboto'}}>News Agency</th>
+                <th style={{ fontFamily: "Rooboto" }}>S.No.</th>
+                <th style={{ fontFamily: "Rooboto" }}>Title</th>
+                <th style={{ fontFamily: "Rooboto" }}>Category</th>
+                <th style={{ fontFamily: "Rooboto" }}>Creation Time</th>
+                <th style={{ fontFamily: "Rooboto" }}>Rejection Time</th>
+                <th style={{ fontFamily: "Rooboto" }}>Author Name</th>
+                <th style={{ fontFamily: "Rooboto" }}>Rejected By</th>
+                <th style={{ fontFamily: "Rooboto" }}>Rejection Remarks</th>
+                <th style={{ fontFamily: "Rooboto" }}>News Agency</th>
 
-                <th style={{fontFamily:'Rooboto'}}>Operation</th>
+                <th style={{ fontFamily: "Rooboto" }}>Operation</th>
               </tr>
             </thead>
 
-            {rejectedNews?.slice().reverse().map((item, index) => {
-              return (
-                <tbody key={item?._id}>
-                  <tr>
-                    <td style={{fontFamily:'Rooboto'}}>{index + 1}</td>
-                    <td style={{fontFamily:'Rooboto'}}
-                     
-                      dangerouslySetInnerHTML={{ __html: item.title }}
-                    ></td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.category}</td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.createdAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.createdAt.slice(11, 16))}</p>
-                    </td>
-                    <td>
-                      <p style={{fontFamily:'Rooboto'}}>{item.updatedAt.slice(0, 10)}</p>
-                      <p style={{fontFamily:'Rooboto'}}>{utcToGmt(item.updatedAt.slice(11, 16))}</p>
-                    </td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.author_name}</td>
-                    <td style={{fontFamily:'Rooboto'}}>Rejected By</td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.remark}</td>
-                    <td style={{fontFamily:'Rooboto'}}>{item.username}</td>
+            {rejectedNews
+              ?.slice()
+              .reverse()
+              .map((item, index) => {
+                return (
+                  <tbody key={item?._id}>
+                    <tr>
+                      <td style={{ fontFamily: "Rooboto" }}>{index + 1}</td>
+                      <td
+                        style={{ fontFamily: "Rooboto" }}
+                        dangerouslySetInnerHTML={{ __html: item.title }}
+                      ></td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.category}</td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.createdAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.createdAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {item.updatedAt.slice(0, 10)}
+                        </p>
+                        <p style={{ fontFamily: "Rooboto" }}>
+                          {utcToGmt(item.updatedAt.slice(11, 16))}
+                        </p>
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        {item.author_name}
+                      </td>
+                      <td style={{ fontFamily: "Rooboto" }}>Rejected By</td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.remark}</td>
+                      <td style={{ fontFamily: "Rooboto" }}>{item.username}</td>
 
-                    <td style={{fontFamily:'Rooboto'}}>
-                      <span className="pointer" title="Edit News"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate("/EditReject", { state: item });
-                            }}>
-                        <FaEdit />
-                      </span>
-                      <span className="pointer" title="View News"
-                       onClick={() => navigate("/viewNews", { state: { item } })}
-                      >
-                        <FiEye />
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+                      <td style={{ fontFamily: "Rooboto" }}>
+                        <span
+                          className="pointer"
+                          title="Edit News"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate("/EditReject", { state: item });
+                          }}
+                        >
+                          <FaEdit />
+                        </span>
+                        <span
+                          className="pointer"
+                          title="View News"
+                          onClick={() =>
+                            navigate("/viewNews", { state: { item } })
+                          }
+                        >
+                          <FiEye />
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
 
             <tfoot></tfoot>
           </table>

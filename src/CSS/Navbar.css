@@ -75,10 +75,10 @@
   color: white;
 }
 
-input[type="checkbox"] {
+/* input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-}
+} */
 label {
   display: none;
   cursor: pointer;
